@@ -1,2 +1,0 @@
-Frontend-Javascript-First-Exam
-==============================

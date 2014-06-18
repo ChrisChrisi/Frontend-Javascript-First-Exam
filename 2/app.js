@@ -2,10 +2,10 @@
 var getTime = function () {
     var minutes = parseInt($("#minutes").val());
     var seconds = parseInt($("#seconds").val());
-    if ( isNaN(minutes)){
+    if (isNaN(minutes)) {
         minutes = 0;
     }
-    if (isNaN(seconds)){
+    if (isNaN(seconds)) {
         seconds = 0;
     }
     return (minutes * 60 + seconds);
@@ -22,12 +22,12 @@ var updateTimer = function (time) {
 var countUp = function (setTime) {
     var time = 0;
     var id;
-    var makeCount =function(){
-        if(time <setTime){
+    var makeCount = function () {
+        if (time < setTime) {
             console.log(time);
             time += 1;
             updateTimer(time);
-        }else{
+        } else {
             clearInterval(id);
         }
     };
@@ -38,12 +38,12 @@ var countUp = function (setTime) {
 var countDown = function (setTime) {
     var time = setTime;
     var id;
-    var makeCount =function(){
-        if(time > 0){
+    var makeCount = function () {
+        if (time > 0) {
             console.log(time);
             time -= 1;
             updateTimer(time);
-        }else{
+        } else {
             clearInterval(id);
         }
     };
@@ -55,16 +55,22 @@ $(document).ready(function () {
     var intervalId;
 
     $("#buttons").on("click", "#count-up", function () {
-       intervalId = countUp(getTime());
+        if (intervalId) {
+            clearInterval(intervalId);
+        }
+        intervalId = countUp(getTime());
     });
 
     $("#buttons").on("click", "#count-down", function () {
+        if (intervalId) {
+            clearInterval(intervalId);
+        }
         intervalId = countDown(getTime());
     });
 
     $("#reset").on("click", function () {
-        if(intervalId){
-        clearInterval(intervalId);
+        if (intervalId) {
+            clearInterval(intervalId);
         }
         $("#minute-first-digit").text(0);
         $("#minute-second-digit").text(0);

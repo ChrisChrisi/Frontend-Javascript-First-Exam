@@ -2,10 +2,10 @@
 var getTime = function () {
     var minutes = parseInt($("#minutes").val());
     var seconds = parseInt($("#seconds").val());
-    if (isNaN(minutes)) {
+    if (_.isNaN(minutes)) {
         minutes = 0;
     }
-    if (isNaN(seconds)) {
+    if (_.isNaN(seconds)) {
         seconds = 0;
     }
     return (minutes * 60 + seconds);
